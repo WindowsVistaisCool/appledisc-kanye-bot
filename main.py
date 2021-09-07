@@ -43,8 +43,15 @@ async def freeishot(ctx):
     await ctx.send("<:horny:815833288936914944> <:horny_2:866447638516858880> <:horny_tongue:827959001311346688>")
 
 @client.command()
+async def dosurgery(ctx):
+    await ctx.send(f"<:horny_2:866447638516858880> OK DADDY I WILL OPERATE ON YOU <:horny_2:866447638516858880><:horny_2:866447638516858880>")
+
+@client.command()
 @commands.has_any_role(872954220884688937, 831577493080113193, 792875711676940321, 788912937481273344, 788911513129058304)
 async def accept(ctx, *, quote):
+    if quote.startswith("\"") or quote.endswith("\""):
+        await ctx.send("WTF MAN YUO HAVE QUOTATION MARKS IN YOUR QUOTE REMOVE THEM OR I WILL FUCK YOU IN THE ASS")
+        return
     x = store('quotes.json', None, True)
     x.append(quote)
     store('quotes.json', x)
