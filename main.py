@@ -26,7 +26,7 @@ async def wakeupmrwest(ctx):
 
 @client.command()
 async def quote(ctx):
-    await ctx.send(random.choice(store('config.json', 'kanye', True)['quotes']))
+    await ctx.send(random.choice(store('quotes.json', None, True)))
 
 @client.command()
 async def addq(ctx, *, request):
@@ -36,9 +36,10 @@ async def addq(ctx, *, request):
 
 @client.command()
 @commands.has_any_role(872954220884688937, 831577493080113193, 792875711676940321, 788912937481273344, 788911513129058304)
-async def accept(ctx, id):
-    x = store('config.json', 'kanye', True)
-    message = await ctx.channel.fetch_message(int(id))
-    x['quotes'].append(message.content)
+async def accept(ctx, *, quote):
+    x = store('quotes.json', None, True)
+    x.append(quote)
+    store('quotes.json', x)
+    await ctx.send("ok i appenned that quote yee")
 
 client.run(store('config.json', 'token', True))
