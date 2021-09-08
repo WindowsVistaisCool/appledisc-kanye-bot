@@ -7,6 +7,9 @@ client = commands.Bot(command_prefix=store('config.json', 'pfx', True))
 
 @client.event
 async def on_ready():
+    guild = client.get_guild(788886124159828009)
+    global emojis
+    emojis = await guild.fetch_emojis()
     await ready_status(client, store('config.json', None, True))
     print("Ready")
 
@@ -26,17 +29,11 @@ async def wakeupmrwest(ctx):
 
 @client.command()
 async def quote(ctx):
-    await ctx.send(f"{random.choice(store('quotes.json', None, True))} {random.choice(await ctx.guild.fetch_emojis())}")
+    await ctx.send(f"{random.choice(store('quotes.json', None, True))} {random.choice(emojis)}")
 
 @client.command()
-async def howmany(ctx):
+async def count(ctx):
     await ctx.send(f"there are {len(store('quotes.json', None, True))} quotes recorded")
-
-@client.command()
-async def addq(ctx, *, request):
-    c = client.get_channel(868667030973321256)
-    await c.send(request)
-    await ctx.send("ok your request has been sent")
 
 @client.command()
 async def freeishot(ctx):
