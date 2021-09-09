@@ -27,11 +27,11 @@ async def on_message(message):
 async def wakeupmrwest(ctx):
     await ctx.send("<:horny:815833288936914944> WAKE UP MR WEST <:horny:815833288936914944>")
 
-@client.command()
+@client.command(aliases=['q', 'quotes'])
 async def quote(ctx):
     await ctx.send(f"{random.choice(store('quotes.json', None, True))} {random.choice(emojis)}")
 
-@client.command()
+@client.command(description="shows how many quotes exist")
 async def count(ctx):
     await ctx.send(f"there are {len(store('quotes.json', None, True))} quotes recorded")
 
@@ -39,11 +39,7 @@ async def count(ctx):
 async def freeishot(ctx):
     await ctx.send("<:horny:815833288936914944> <:horny_2:866447638516858880> <:horny_tongue:827959001311346688>")
 
-@client.command()
-async def dosurgery(ctx):
-    await ctx.send(f"<:horny_2:866447638516858880> OK DADDY I WILL OPERATE ON YOU <:horny_2:866447638516858880><:horny_2:866447638516858880>")
-
-@client.command()
+@client.command(description="add a quote to the list")
 @commands.has_any_role(872954220884688937, 831577493080113193, 792875711676940321, 788912937481273344, 788911513129058304)
 async def accept(ctx, *, quote):
     if quote.startswith("\"") or quote.endswith("\""):
