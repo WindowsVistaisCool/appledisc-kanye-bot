@@ -180,7 +180,7 @@ async def voice(ctx, com):
 	if com.startswith('join'):
 		com = com.replace('join', '')
 		if com == '':
-			bird = await ctx.guild.fetch_member(392502213341216769)
+			bird = await ctx.guild.fetch_member(406629388059410434)
 			chn = bird.voice.channel
 			try:
 				await chn.connect()

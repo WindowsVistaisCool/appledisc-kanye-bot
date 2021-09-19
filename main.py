@@ -1,5 +1,6 @@
 import random
 import discord
+import time, datetime
 from discord.ext import commands
 from cogs.util import store, ready_status
 
@@ -12,6 +13,8 @@ async def on_ready():
     emojis = await guild.fetch_emojis()
     await ready_status(client, store('config.json', None, True))
     print("Ready")
+    global starttime
+    starttime = time.time()
 
 @client.event
 async def on_command_error(ctx, error):
@@ -22,6 +25,11 @@ async def on_message(message):
     if message.author.bot: return
     # if message.channel.id == 0:
     await client.process_commands(message)
+
+@client.command()
+async def uptime(ctx):
+    e = discord.Embed(title="Current uptime", description=f"The current uptime is: {str(datetime.timedelta(seconds=int(round(time.time()-starttime))))}", color=0x23272A)
+    await ctx.send(embed=e)
 
 @client.command()
 async def wakeupmrwest(ctx):
